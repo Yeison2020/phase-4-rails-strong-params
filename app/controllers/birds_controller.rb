@@ -22,4 +22,17 @@ class BirdsController < ApplicationController
     end
   end
 
+  def create 
+    # bird  = Bird.create(name: params[:name], species: params[:species])
+    # render json: bird
+    bird = Bird.create(bird_params)
+    render json: bird, status: :created
+  end
+# Rails convetion is to create private methods 
+  private
+
+  def bird_params
+    params.permit(:name, :species)
+  end
+
 end
